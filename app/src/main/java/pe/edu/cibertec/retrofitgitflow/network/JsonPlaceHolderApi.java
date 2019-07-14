@@ -5,6 +5,7 @@ import java.util.List;
 import pe.edu.cibertec.retrofitgitflow.data.entities.Post;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface JsonPlaceHolderApi {
@@ -14,4 +15,8 @@ public interface JsonPlaceHolderApi {
 
     @GET("posts/{id}")
     Call<Post>getPostId(@Path("id") int postid);
+
+    @POST("posts/{id}")
+    Call<Post>setPost(@Path("id") int postid);
+
 }
