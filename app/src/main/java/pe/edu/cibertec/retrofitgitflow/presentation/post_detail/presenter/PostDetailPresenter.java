@@ -1,5 +1,8 @@
 package pe.edu.cibertec.retrofitgitflow.presentation.post_detail.presenter;
 
+import javax.inject.Inject;
+
+
 import pe.edu.cibertec.retrofitgitflow.data.entities.Post;
 import pe.edu.cibertec.retrofitgitflow.domain.postDetailInteractor.IPostDetailInteractor;
 import pe.edu.cibertec.retrofitgitflow.presentation.post_detail.IPostDetailContract;
@@ -8,6 +11,7 @@ public class PostDetailPresenter implements IPostDetailContract.IPresenter {
     IPostDetailInteractor interactor;
     IPostDetailContract.IView view;
 
+    @Inject
     public PostDetailPresenter(IPostDetailInteractor interactor){
         this.interactor=interactor;
     }

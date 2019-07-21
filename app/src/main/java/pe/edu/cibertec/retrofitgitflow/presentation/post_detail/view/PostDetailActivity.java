@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import javax.inject.Inject;
+
+import pe.edu.cibertec.retrofitgitflow.MyApplication;
 import pe.edu.cibertec.retrofitgitflow.R;
 import pe.edu.cibertec.retrofitgitflow.data.entities.Post;
 import pe.edu.cibertec.retrofitgitflow.domain.postDetailInteractor.PostDetailInteractorImpl;
@@ -13,16 +16,21 @@ import pe.edu.cibertec.retrofitgitflow.presentation.post_detail.IPostDetailContr
 import pe.edu.cibertec.retrofitgitflow.presentation.post_detail.presenter.PostDetailPresenter;
 
 public class PostDetailActivity extends AppCompatActivity implements IPostDetailContract.IView {
+
+
     TextView tvTitleDetail;
     TextView tvBodyDetail;
+    @Inject
     PostDetailPresenter presenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_detail);
+        MyApplication myApplication =(MyApplication) getApplication();
+        myApplication.getAppComponent().inject(this);
         tvTitleDetail= findViewById(R.id.tvTitleDetail);
         tvBodyDetail= findViewById(R.id.tvBodyDetail);
-        presenter= new PostDetailPresenter(new PostDetailInteractorImpl());
+        //presenter= new PostDetailPresenter(new PostDetailInteractorImpl());
         presenter.attachView(this);
 
         int id= getIntent().getIntExtra("post_id",0);

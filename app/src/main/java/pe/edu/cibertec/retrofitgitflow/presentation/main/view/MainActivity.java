@@ -14,6 +14,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import pe.edu.cibertec.retrofitgitflow.MyApplication;
 import pe.edu.cibertec.retrofitgitflow.R;
 import pe.edu.cibertec.retrofitgitflow.data.entities.Post;
 import pe.edu.cibertec.retrofitgitflow.domain.main_interactor.MainInteractorImpl;
@@ -28,13 +31,16 @@ public class MainActivity extends AppCompatActivity implements IMainContract.IVi
     private PostAdapter postAdapter;
     private List<Post> postList;
     private ProgressBar progressBarMain;
-    private MainPresenter presenter;
+    @Inject
+    MainPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        presenter= new MainPresenter(new MainInteractorImpl());
+        //presenter= new MainPresenter(new MainInteractorImpl());
+        MyApplication application=(MyApplication)getApplication();
+        application.getAppComponent().inject(this);
         presenter.attachView(this);
         textViewResult = findViewById(R.id.textViewResult);
         progressBarMain = findViewById(R.id.progressBarMain);
